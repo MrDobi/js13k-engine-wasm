@@ -1,21 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/stackblitz-favicon-editor.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My first WebContainers app</title>
-  </head>
-  <body>
-    <header>
-      <h1>Hello, <span class="wc">WebContainers API</span>!</h1>
-      <p>
-        <a class="docs" href="https://webcontainers.io" target="_blank" rel="noreferrer noopener">
-          Read the docs 📖
-        </a>
-      </p>
-    </header>
-    <div id="app"></div>
-    <script type="module" src="/main.js"></script>
-  </body>
+<head>
+<script type="module">
+import { getId } from "./build/release.js";
+
+console.log(getId())
+
+// import { d, u, c, memory, BUFFER_POINTER, BUFFER_SIZE } from "./build/release.js";
+
+// // Get our canvas element from our index.html
+// const canvasElement = document.querySelector("canvas");
+
+// // console.log({ canvasElement })
+
+// // Set up Context and ImageData on the canvas
+// const canvasContext = canvasElement.getContext("2d");
+// const canvasImageData = canvasContext.createImageData(
+//     canvasElement.width,
+//     canvasElement.height
+// );
+
+// // Clear the canvas
+// canvasContext.clearRect(0, 0, canvasElement.width, canvasElement.height);
+
+// const draw = () => {
+//     d();
+//     const wasmByteMemoryArray = new Uint8Array(memory.buffer);
+//     const imageDataArray = wasmByteMemoryArray.slice(
+//         BUFFER_POINTER.valueOf(),
+//         BUFFER_SIZE.valueOf()
+//     );
+
+//     // Set the values to the canvas image data
+//     canvasImageData.data.set(imageDataArray);
+
+//     // Clear the canvas
+//     canvasContext.clearRect(0, 0, canvasElement.width, canvasElement.height);
+
+//     // Place the new generated checkerboard onto the canvas
+//     canvasContext.putImageData(canvasImageData, 0, 0);
+// }
+
+// document.addEventListener('keydown', event => {
+//     if (event.key === " ") c(1);
+// });
+
+// setInterval(() => {
+//     draw();
+//     u();
+// }, 1000);
+</script>
+</head>
+<body style="margin: 0;"><canvas
+    width="16"
+    height="9"
+    style="image-rendering: pixelated; image-rendering: crisp-edges; width: 100vw;"></body>
 </html>
