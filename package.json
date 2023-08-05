@@ -10,7 +10,8 @@
     "start": "npx serve ."
   },
   "devDependencies": {
-    "assemblyscript": "^0.27.8"
+    "assemblyscript": "^0.27.8",
+    "serve": "^14.2.0"
   },
   "exports": {
     ".": {
