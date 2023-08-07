@@ -9,7 +9,7 @@
     "release": {
       "outFile": "build/release.wasm",
       "textFile": "build/release.wat",
-      "sourceMap": false,
+      "sourceMap": true,
       "debug": false,
       "optimizeLevel": 3,
       "shrinkLevel": 2,

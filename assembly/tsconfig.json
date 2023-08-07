@@ -4,6 +4,7 @@
         "./**/*.ts"
     ],
     "compilerOptions": {
-        "strictPropertyInitialization": false
+        "strictPropertyInitialization": false,
+        "strictBindCallApply": false
     }
 }

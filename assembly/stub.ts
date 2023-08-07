@@ -4,18 +4,18 @@
 @inline const AL_MASK: usize = AL_SIZE - 1;
 
 @unmanaged class BLOCK {
-    mmInfo: usize;
+  mmInfo: usize;
 }
 
 @unmanaged class OBJECT extends BLOCK {
-    /** Garbage collector info. */
-    gcInfo: u32;
-    /** Garbage collector info. */
-    gcInfo2: u32;
-    /** Runtime class id. */
-    rtId: u32;
-    /** Runtime object size. */
-    rtSize: u32;
+  /** Garbage collector info. */
+  gcInfo: u32;
+  /** Garbage collector info. */
+  gcInfo2: u32;
+  /** Runtime class id. */
+  rtId: u32;
+  /** Runtime object size. */
+  rtSize: u32;
 }
 
 @inline const BLOCK_OVERHEAD: usize = offsetof<BLOCK>();
@@ -31,15 +31,15 @@ const E_ALLOCATION_TOO_LARGE: string = "Allocation too large";
 
 function maybeGrowMemory(newOffset: usize): void {
   // assumes newOffset is aligned
-  let pagesBefore = memory.size();
-  let maxOffset = ((<usize>pagesBefore << 16) + AL_MASK) & ~AL_MASK;
-  if (newOffset > maxOffset) {
-    let pagesNeeded = <i32>(((newOffset - maxOffset + 0xffff) & ~0xffff) >>> 16);
-    let pagesWanted = max(pagesBefore, pagesNeeded); // double memory
-    if (memory.grow(pagesWanted) < 0) {
-      if (memory.grow(pagesNeeded) < 0) unreachable(); // out of memory
-    }
-  }
+  // let pagesBefore = memory.size();
+  // let maxOffset = ((<usize>pagesBefore << 16) + AL_MASK) & ~AL_MASK;
+  // if (newOffset > maxOffset) {
+  //   let pagesNeeded = <i32>(((newOffset - maxOffset + 0xffff) & ~0xffff) >>> 16);
+  //   let pagesWanted = max(pagesBefore, pagesNeeded); // double memory
+  //   if (memory.grow(pagesWanted) < 0) {
+  //     if (memory.grow(pagesNeeded) < 0) unreachable(); // out of memory
+  //   }
+  // }
   offset = newOffset;
 }
 
@@ -132,7 +132,7 @@ function __unpin(ptr: usize): void {
 }
 
 @global @unsafe
-function __visit(ptr: usize, cookie: u32): void { // eslint-disable-line @typescript-eslint/no-unused-vars
+function __visit(ptr: usize, cookie: u32): void {
   // nop
 }
 
