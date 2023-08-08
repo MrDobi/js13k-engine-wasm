@@ -13,6 +13,7 @@ const image = ctx.createImageData(canvas.width, canvas.height);
 // demos todo: snake, flappy birds, tetris, racing, mario, pharaoh, knight and merchants
 // https://www.assemblyscript.org/examples/interference.html#interference-example
 // https://github.com/ttulka/2d-videogame-in-assemblyscript
+// https://www.assemblyscript.org/concepts.html#accessing-memory-during-instantiation
 
 (function d() {
     requestAnimationFrame(d);
@@ -27,12 +28,25 @@ setInterval(() => {
     let now = performance.now(), diff = now - lastUpdate;
     lastUpdate = now;
     u(parseInt(diff))
-}, 150);
+}, 10);
 
+// add cursor
 // touch not working yet :<
-document.addEventListener("mousedown", e => c(e.clientX, e.clientY, true));
-document.addEventListener("mousemove", e => c(e.clientX, e.clientY, true));
-document.addEventListener("mouseup", e => c(e.clientX, e.clientY, false));
+// document.addEventListener("mousedown", e => c(e.clientX, e.clientY, true));
+// document.addEventListener("mousemove", e => c(e.clientX, e.clientY, true));
+// document.addEventListener("mouseup", e => c(e.clientX, e.clientY, false));
+
+const controls = new Set();
+document.addEventListener("keydown", e => {
+    if (!controls.has(e.keyCode)) {
+        controls.add(e.keyCode);
+        c(e.keyCode === 37 ? -1 : e.keyCode === 39 ? 1 : 0, e.keyCode === 38 ? -1 : e.keyCode === 40 ? 1 : 0, true);
+    }
+});
+document.addEventListener("keyup", e => {
+    controls.delete(e.keyCode);
+    c(e.keyCode === 37 ? -1 : e.keyCode === 39 ? 1 : 0, e.keyCode === 38 ? -1 : e.keyCode === 40 ? 1 : 0, false);
+});
 </script>
 </head>
-<body style="margin:0;overflow:hidden;background:#444"><canvas style="image-rendering:pixelated;width:100vmin;margin:0 auto;display:block"></body></html>
+<body style="margin:0;overflow:hidden;background:#444"><canvas style="cursor:none;image-rendering:pixelated;width:100vmin;margin:auto;display:block"></body></html>
